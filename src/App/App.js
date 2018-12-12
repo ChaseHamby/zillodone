@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import connection from '../helpers/data/connection';
 import Auth from '../components/Auth/auth';
 import Listings from '../components/Listings/listings';
@@ -13,6 +15,23 @@ class App extends Component {
 
   componentDidMount() {
     connection();
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+          authed: true,
+        });
+      } else {
+        this.setState({
+          authed: false,
+        });
+      }
+    });
+  }
+
+  // ^^^ Doesn't require user to login again on refresh if they are already logged in
+
+  componentWillUnmount() {
+    this.removeListener();
   }
 
   isAuthenticated = () => {
