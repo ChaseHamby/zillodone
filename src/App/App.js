@@ -58,8 +58,8 @@ class App extends Component {
       <div className="App">
         <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
         <Listings />
-        {/* <Buildings />
-        <ListingForm /> */}
+        <Buildings />
+        <ListingForm />
       </div>
     );
   }
