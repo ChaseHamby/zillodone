@@ -38,14 +38,23 @@ class App extends Component {
     });
   }
 
-  // ^^^ Doesn't require user to login again on refresh if they are already logged in
-
   componentWillUnmount() {
     this.removeListener();
   }
 
   isAuthenticated = () => {
-    this.setState({ authed: true }); // changes the state above
+    this.setState({ authed: true });
+  }
+
+  deleteOne = (listingId) => {
+    listingRequests.deleteListing(listingId)
+      .then(() => {
+        listingRequests.getRequest()
+          .then((listings) => {
+            this.setState({ listings });
+          });
+      })
+      .catch(err => console.error('error with delete single', err));
   }
 
   render() {
@@ -68,8 +77,10 @@ class App extends Component {
       <div className="App">
         <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
         <div className="row">
-          <Listings />
-          <Listings listings={this.state.listings}/>
+          <Listings
+            listings={this.state.listings}
+            deleteSingleListing={this.deleteOne}
+          />
           <Buildings />
         </div>
         <div className="row">
