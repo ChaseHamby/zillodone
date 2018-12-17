@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import listingShape from '../../helpers/propz/listingShape';
+
 import './listings.scss';
 
 class Listings extends React.Component {
   static propTypes = {
-    listings: PropTypes.arrayOf(PropTypes.object),
+    listings: PropTypes.arrayOf(listingShape),
   }
-  
+
   render() {
     return (
       <div className="listings col">
