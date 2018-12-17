@@ -7,16 +7,24 @@ import Listings from '../components/Listings/listings';
 import Buildings from '../components/Buildings/buildings';
 import ListingForm from '../components/ListingForm/listingform';
 import MyNavbar from '../components/MyNavbar/myNavbar';
+import listingRequests from '../helpers/data/listingRequests';
 import './App.scss';
 import authRequests from '../helpers/data/authRequests';
 
 class App extends Component {
   state = {
     authed: false,
+    listings: [],
   }
 
   componentDidMount() {
     connection();
+    listingRequests.getRequest()
+      .then((listings) => {
+        this.setState({ listings });
+      })
+      .catch(err => console.error('error with listing GET', err));
+
     this.removeListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({
@@ -30,14 +38,23 @@ class App extends Component {
     });
   }
 
-  // ^^^ Doesn't require user to login again on refresh if they are already logged in
-
   componentWillUnmount() {
     this.removeListener();
   }
 
   isAuthenticated = () => {
-    this.setState({ authed: true }); // changes the state above
+    this.setState({ authed: true });
+  }
+
+  deleteOne = (listingId) => {
+    listingRequests.deleteListing(listingId)
+      .then(() => {
+        listingRequests.getRequest()
+          .then((listings) => {
+            this.setState({ listings });
+          });
+      })
+      .catch(err => console.error('error with delete single', err));
   }
 
   render() {
@@ -60,7 +77,10 @@ class App extends Component {
       <div className="App">
         <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
         <div className="row">
-          <Listings />
+          <Listings
+            listings={this.state.listings}
+            deleteSingleListing={this.deleteOne}
+          />
           <Buildings />
         </div>
         <div className="row">
