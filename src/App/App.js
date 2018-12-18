@@ -14,6 +14,7 @@ import authRequests from '../helpers/data/authRequests';
 class App extends Component {
   state = {
     authed: false,
+    github_username: '',
     listings: [],
   }
 
@@ -42,8 +43,8 @@ class App extends Component {
     this.removeListener();
   }
 
-  isAuthenticated = () => {
-    this.setState({ authed: true });
+  isAuthenticated = (username) => {
+    this.setState({ authed: true, github_username: username });
   }
 
   deleteOne = (listingId) => {
@@ -60,7 +61,7 @@ class App extends Component {
   render() {
     const logoutClickEvent = () => {
       authRequests.logoutUser();
-      this.setState({ authed: false });
+      this.setState({ authed: false, github_username: '' });
     };
 
     if (!this.state.authed) {
