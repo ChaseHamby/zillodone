@@ -34,15 +34,29 @@ class ListingForm extends React.Component {
     this.setState({ newListing: tempListing });
   }
 
-  // formFieldNumberState = (name, e) => {
-  //   const tempListing = { ...this.state.newListing };
-  //   tempListing[name] = e.target.value * 1;
-  //   this.setState({ newListing: tempListing });
-  // }
+  formFieldNumberState = (name, e) => {
+    const tempListing = { ...this.state.newListing };
+    tempListing[name] = e.target.value * 1;
+    this.setState({ newListing: tempListing });
+  }
 
   // Use this above for ones that have numbers instead of strangs
 
   addressChange = e => this.formFieldStringState('address', e);
+
+  squareFootageChanbge = e => this.formFieldNumberState('squareFootage', e);
+
+  priceChange = e => this.formFieldNumberState('price', e);
+
+  numBedsChange = e => this.formFieldStringState('numBeds', e);
+
+  numBathsChange = e => this.formFieldStringState('numBaths', e);
+
+  heatingChange = e => this.formFieldStringState('heating', e);
+
+  coolingChange = e => this.formFieldStringState('cooling', e);
+
+  imageUrlChange = e => this.formFieldStringState('imageUrl', e);
 
   formSubmit = (e) => {
     e.preventDefault();
@@ -87,6 +101,90 @@ class ListingForm extends React.Component {
               placeholder="123 Main Street Nashville, TN 37069"
               value={newListing.address}
               onChange={this.addressChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="imageUrl">Image URL: </label>
+            <input
+              type="text"
+              className="form-control"
+              id="imageUrl"
+              aria-describedby="imageUrlHelp"
+              placeholder="www.google.com"
+              value={newListing.imageUrl}
+              onChange={this.imageUrlChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="squareFootage">Square Footage: </label>
+            <input
+              type="number"
+              className="form-control"
+              id="squareFootage"
+              aria-describedby="squareFootageHelp"
+              placeholder="1234"
+              value={newListing.squareFootage}
+              onChange={this.squareFootageChanbge}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="numBeds">Number of Beds: </label>
+            <input
+              type="number"
+              className="form-control"
+              id="numBeds"
+              aria-describedby="numBedsHelp"
+              placeholder="3+"
+              value={newListing.numBeds}
+              onChange={this.numBedsChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="numBaths">Number of Baths: </label>
+            <input
+              type="number"
+              className="form-control"
+              id="numBaths"
+              aria-describedby="numBathsHelp"
+              placeholder="3+"
+              value={newListing.numBaths}
+              onChange={this.numBathsChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="price">Price: </label>
+            <input
+              type="number"
+              className="form-control"
+              id="price"
+              aria-describedby="priceHelp"
+              placeholder="$555,000"
+              value={newListing.price}
+              onChange={this.priceChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="heating">Heating: </label>
+            <input
+              type="text"
+              className="form-control"
+              id="heating"
+              aria-describedby="heatingHelp"
+              placeholder="Fireplace"
+              value={newListing.heating}
+              onChange={this.heatingChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="cooling">Cooling: </label>
+            <input
+              type="text"
+              className="form-control"
+              id="cooling"
+              aria-describedby="coolingHelp"
+              placeholder="Air Conditioning"
+              value={newListing.cooling}
+              onChange={this.coolingChange}
             />
           </div>
           <button className="btn btn-danger">Save Listing</button>
