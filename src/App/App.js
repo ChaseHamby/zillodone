@@ -14,8 +14,9 @@ import authRequests from '../helpers/data/authRequests';
 class App extends Component {
   state = {
     authed: false,
-    github_username: '',
     listings: [],
+    isEditing: false,
+    editId: '-1',
   }
 
   componentDidMount() {
@@ -69,16 +70,27 @@ class App extends Component {
       .catch(err => console.error('error with the listings post', err));
   }
 
+  passListingToEdit = listingId => this.setState({ isEditing: true, editId: listingId });
+
   render() {
+    const {
+      authed,
+      listings,
+      isEditing,
+      editId,
+    } = this.state;
+
     const logoutClickEvent = () => {
       authRequests.logoutUser();
       this.setState({ authed: false, github_username: '' });
     };
 
-    if (!this.state.authed) {
+    // {!authed} means {this.state.authed}
+
+    if (!authed) {
       return (
         <div className="App">
-          <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
+          <MyNavbar isAuthed={!authed} logoutClickEvent={logoutClickEvent} />
           <div className="row">
             <Auth isAuthenticated={this.isAuthenticated}/>
           </div>
@@ -87,16 +99,17 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
+        <MyNavbar isAuthed={!authed} logoutClickEvent={logoutClickEvent} />
         <div className="row">
           <Listings
-            listings={this.state.listings}
+            listings={listings}
             deleteSingleListing={this.deleteOne}
+            passListingToEdit={this.passListingToEdit}
           />
           <Buildings />
         </div>
         <div className="row">
-          <ListingForm onSubmit={this.formSubmitEvent}/>
+          <ListingForm onSubmit={this.formSubmitEvent} isEditing={isEditing} editId={editId}/>
         </div>
       </div>
     );

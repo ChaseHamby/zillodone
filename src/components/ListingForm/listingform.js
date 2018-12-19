@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './listingform.scss';
 import authRequests from '../../helpers/data/authRequests';
+import listingRequests from '../../helpers/data/listingRequests';
 
 const defaultListing = {
   address: '',
@@ -18,6 +19,8 @@ const defaultListing = {
 class ListingForm extends React.Component {
   static propTypes = {
     onSubmit: PropTypes.func,
+    isEditing: PropTypes.bool,
+    editId: PropTypes.string,
   }
 
   state = {
@@ -37,6 +40,8 @@ class ListingForm extends React.Component {
   //   this.setState({ newListing: tempListing });
   // }
 
+  // Use this above for ones that have numbers instead of strangs
+
   addressChange = e => this.formFieldStringState('address', e);
 
   formSubmit = (e) => {
@@ -46,6 +51,17 @@ class ListingForm extends React.Component {
     myListing.uid = authRequests.getCurrentUid();
     onSubmit(myListing);
     this.setState({ newListing: defaultListing }); // clears the input field
+  }
+
+  componentDidUpdate(prevProps) {
+    const { isEditing, editId } = this.props;
+    if (prevProps !== this.props && isEditing) {
+      listingRequests.getSingleListing(editId)
+        .then((listing) => {
+          this.setState({ newListing: listing.data });
+        })
+        .catch(err => console.error('error with getSingleListing', err));
+    }
   }
 
   render() {
