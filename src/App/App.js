@@ -66,7 +66,7 @@ class App extends Component {
         .then(() => {
           listingRequests.getRequest()
             .then((listings) => {
-              this.setState({ listings });
+              this.setState({ listings, isEditing: false, editId: '-1' });
             });
         })
         .catch(err => console.error('error with listings post', err));
