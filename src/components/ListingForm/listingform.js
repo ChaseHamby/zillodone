@@ -154,7 +154,7 @@ class ListingForm extends React.Component {
           <div className="form-group">
             <label htmlFor="price">Price: </label>
             <input
-              type="number"
+              type="text"
               className="form-control"
               id="price"
               aria-describedby="priceHelp"
