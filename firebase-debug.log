@@ -1,0 +1,154 @@
+[debug] [2019-01-04T15:39:45.022Z] ----------------------------------------------------------------------
+[debug] [2019-01-04T15:39:45.025Z] Command:       /usr/local/Cellar/node/10.8.0/bin/node /usr/local/bin/firebase deploy --debug
+[debug] [2019-01-04T15:39:45.026Z] CLI Version:   6.1.2
+[debug] [2019-01-04T15:39:45.026Z] Platform:      darwin
+[debug] [2019-01-04T15:39:45.026Z] Node Version:  v10.8.0
+[debug] [2019-01-04T15:39:45.027Z] Time:          Fri Jan 04 2019 09:39:45 GMT-0600 (Central Standard Time)
+[debug] [2019-01-04T15:39:45.027Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-01-04T15:39:45.043Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-01-04T15:39:45.043Z] > authorizing via signed-in user
+[debug] [2019-01-04T15:39:45.044Z] [iam] checking project zillodone for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-01-04T15:39:45.045Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-01-04T15:39:45.046Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-01-04T15:39:45.200Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-04T15:39:45.208Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/zillodone:testIamPermissions  
+
+[debug] [2019-01-04T15:39:45.436Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-04T15:39:45.438Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/zillodone  
+ 
+[debug] [2019-01-04T15:39:45.666Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'zillodone'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-01-04T15:39:45.671Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/zillodone/versions  
+
+[debug] [2019-01-04T15:39:46.726Z] <<< HTTP RESPONSE 200
+[info] i  hosting[zillodone]: beginning deploy...
+[info] i  hosting[zillodone]: found 1 files in dist
+[debug] [2019-01-04T15:39:46.736Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined
+[debug] [2019-01-04T15:39:46.749Z] [hosting] hash cache [ZGlzdA] stored for 1 files
+[debug] [2019-01-04T15:39:46.750Z] [hosting][hash queue][FINAL]
+[debug] [2019-01-04T15:39:46.750Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/zillodone/versions/8588668094346921:populateFiles  
+ <request body omitted>
+[debug] [2019-01-04T15:39:47.136Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-04T15:39:47.136Z] [hosting][populate queue][FINAL]
+[debug] [2019-01-04T15:39:47.136Z] [hosting] uploads queued: 0
+[debug] [2019-01-04T15:39:47.137Z] [hosting][upload queue][FINAL]
+[info] ✔  hosting[zillodone]: file upload complete
+[debug] [2019-01-04T15:39:47.137Z] [hosting] deploy completed after 410ms
+[debug] [2019-01-04T15:39:47.229Z] [
+  {
+    "config": {
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "zillodone"
+    },
+    "site": "zillodone",
+    "version": "sites/zillodone/versions/8588668094346921"
+  }
+]
+[info] i  hosting[zillodone]: finalizing version...
+[debug] [2019-01-04T15:39:47.229Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/zillodone/versions/8588668094346921?updateMask=status  
+
+[debug] [2019-01-04T15:39:47.651Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-04T15:39:47.651Z] [hosting] finalized version for zillodone:
+[info] ✔  hosting[zillodone]: version finalized
+[info] i  hosting[zillodone]: releasing new version...
+[debug] [2019-01-04T15:39:47.652Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/zillodone/releases?version_name=sites/zillodone/versions/8588668094346921  
+
+[debug] [2019-01-04T15:39:47.915Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-04T15:39:47.916Z] [hosting] release:
+[info] ✔  hosting[zillodone]: release complete
+[info] 
+[info] ✔  Deploy complete!
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/zillodone/overview
+[info] Hosting URL: https://zillodone.firebaseapp.com
+[debug] [2019-01-04T15:41:32.165Z] ----------------------------------------------------------------------
+[debug] [2019-01-04T15:41:32.168Z] Command:       /usr/local/Cellar/node/10.8.0/bin/node /usr/local/bin/firebase deploy --only hosting --debug
+[debug] [2019-01-04T15:41:32.169Z] CLI Version:   6.1.2
+[debug] [2019-01-04T15:41:32.169Z] Platform:      darwin
+[debug] [2019-01-04T15:41:32.169Z] Node Version:  v10.8.0
+[debug] [2019-01-04T15:41:32.170Z] Time:          Fri Jan 04 2019 09:41:32 GMT-0600 (Central Standard Time)
+[debug] [2019-01-04T15:41:32.170Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-01-04T15:41:32.182Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-01-04T15:41:32.182Z] > authorizing via signed-in user
+[debug] [2019-01-04T15:41:32.182Z] [iam] checking project zillodone for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-01-04T15:41:32.184Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/zillodone:testIamPermissions  
+
+[debug] [2019-01-04T15:41:32.439Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-04T15:41:32.440Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/zillodone  
+ 
+[debug] [2019-01-04T15:41:32.654Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'zillodone'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-01-04T15:41:32.658Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/zillodone/versions  
+
+[debug] [2019-01-04T15:41:33.536Z] <<< HTTP RESPONSE 200
+[info] i  hosting[zillodone]: beginning deploy...
+[info] i  hosting[zillodone]: found 1 files in dist
+[debug] [2019-01-04T15:41:33.544Z] [hosting] hash cache [ZGlzdA] load error: lines is not defined
+[debug] [2019-01-04T15:41:33.554Z] [hosting] hash cache [ZGlzdA] stored for 1 files
+[debug] [2019-01-04T15:41:33.554Z] [hosting][hash queue][FINAL]
+[debug] [2019-01-04T15:41:33.554Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/zillodone/versions/c01962313257cecc:populateFiles  
+ <request body omitted>
+[debug] [2019-01-04T15:41:33.940Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-04T15:41:33.941Z] [hosting][populate queue][FINAL]
+[debug] [2019-01-04T15:41:33.941Z] [hosting] uploads queued: 0
+[debug] [2019-01-04T15:41:33.941Z] [hosting][upload queue][FINAL]
+[info] ✔  hosting[zillodone]: file upload complete
+[debug] [2019-01-04T15:41:33.942Z] [hosting] deploy completed after 405ms
+[debug] [2019-01-04T15:41:34.058Z] [
+  {
+    "config": {
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "zillodone"
+    },
+    "site": "zillodone",
+    "version": "sites/zillodone/versions/c01962313257cecc"
+  }
+]
+[info] i  hosting[zillodone]: finalizing version...
+[debug] [2019-01-04T15:41:34.059Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/zillodone/versions/c01962313257cecc?updateMask=status  
+
+[debug] [2019-01-04T15:41:34.349Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-04T15:41:34.350Z] [hosting] finalized version for zillodone:
+[info] ✔  hosting[zillodone]: version finalized
+[info] i  hosting[zillodone]: releasing new version...
+[debug] [2019-01-04T15:41:34.351Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/zillodone/releases?version_name=sites/zillodone/versions/c01962313257cecc  
+
+[debug] [2019-01-04T15:41:34.657Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-04T15:41:34.658Z] [hosting] release:
+[info] ✔  hosting[zillodone]: release complete
+[info] 
+[info] ✔  Deploy complete!
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/zillodone/overview
+[info] Hosting URL: https://zillodone.firebaseapp.com
