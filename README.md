@@ -1,3 +1,13 @@
+## Description
+
+An application that is used to help folks find home listings in their local areas. Users have the ability to view listings. They can also add listings, edit their listings, and remove them entirely. This was an in-class code along exercise where we created a single-page Zillow clone. This app serves as our introduction to React, implementing CRUD methods to interact with Firebase.
+
+
+## Screenshots
+
+<img width="1436" alt="screen shot 2019-01-07 at 9 22 43 pm" src="https://user-images.githubusercontent.com/16019344/50808062-81136c80-12c2-11e9-8c05-99d6710fb069.png">
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
